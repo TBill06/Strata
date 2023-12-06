@@ -16,7 +16,7 @@ for i in lines:
     if len(number) == 0:
         continue
     else:
-        n = int([number[0]+number[-1]])
+        n = int(number[0]+number[-1])
     ans += n
 
 # part 2 - where spelling of digits is valid
@@ -24,10 +24,11 @@ for i in lines:
 number_dict = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
 ans = 0
 for i in lines:
+    n = 0
     numbers = re.findall(r'(?:[1-9]|one|two|three|four|five|six|seven|eight|nine)',i)
     digit_nums = [number_dict[num.lower()] if not num.isdigit() else num for num in numbers]
     if len(digit_nums) != 0:
-        n = int(''.join([digit_nums[0],digit_nums[-1]]))
+        n = int(digit_nums[0]+digit_nums[-1])
     ans += n
 
 # part 2 - correct answer
