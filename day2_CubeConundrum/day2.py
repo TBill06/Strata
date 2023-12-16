@@ -1,6 +1,6 @@
 # Advent of Code Day 2
 
-
+# Reading input from file
 with open("input.txt", "r") as file:
     lines = file.read().splitlines()
 
