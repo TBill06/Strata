@@ -36,9 +36,8 @@ def win(i):
 
 nums_arr = [1]*len(book)
 for index, val in enumerate(book):
-    print("Card:",index+1)
+    count = win(val)
     for j in range(nums_arr[index]):
-        count = win(val)
         if count:
             nums_arr[index+1:index+count+1] = [x+1 for x in nums_arr[index+1:index+count+1]]
 print(sum(nums_arr))
