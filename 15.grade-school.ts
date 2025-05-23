@@ -14,7 +14,13 @@ export class GradeSchool {
 
   add(name:string, grade:number) {
     if(Object.values(this.#school).some(arr=>arr.includes(name))) {
-        throw new Error('Student already exists in the roster');
+      for (const [grade, names] of Object.entries(this.#school)) {
+        if (names.includes(name)) {
+          const index = this.#school[Number(grade)].indexOf(name);
+          if (index !== -1) this.#school[Number(grade)].splice(index, 1);
+          break;
+        }
+      }
     }
     else {
       if(!this.#school[grade]) {
