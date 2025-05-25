@@ -20,7 +20,7 @@ export function commands(val: number): string[] {
     return ans;
 }
 
-// V.20 - Bitwise Operators
+// v2.0 - Bitwise Operators
 // & is a bitwise AND operator
 // (1 << i) shifts the number 1 to the left by i bits
 // 1 << 0 = 00001
