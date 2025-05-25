@@ -41,3 +41,12 @@ export class Clock {
     return val.hourVal === val2.hourVal && val.minVal === val2.minVal;
   }
 }
+
+// Better Method
+  // private convert(hour: number, minute: number): { hourVal: number, minVal: number } {
+  //   let total = (hour * 60 + minute) % (24 * 60);
+  //   if (total < 0) total += 24 * 60;
+  //   const hourVal = Math.floor(total / 60);
+  //   const minVal = total % 60;
+  //   return { hourVal, minVal };
+  // }
