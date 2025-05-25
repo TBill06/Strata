@@ -6,29 +6,38 @@ export class Clock {
     this.minute = minute ?? 0;
   }
 
-  public toString(): unknown {
-    const minsToHour = Math.floor(this.minute/60);
-    const minsVal = this.minute%60;
-    const hoursVal = (this.hour + minsToHour)%24;
-    return `${hoursVal.toString().padStart(2,'0')}:${minsVal.toString().padStart(2,'0')}`
+  private convert(hour: number, min: number): {hourVal: number, minVal: number} {
+    const minsToHour = Math.floor(min/60);
+    let minVal = min%60;
+    let hourVal = (hour + minsToHour)%24;
+    if (hourVal < 0) {
+      hourVal += 24;
+    }
+    if (minVal < 0) {
+      minVal += 60;
+    }
+    return { hourVal, minVal }
+  }
+
+  public toString(): string {
+    const { hourVal, minVal } = this.convert(this.hour, this.minute);
+    return `${hourVal.toString().padStart(2,'0')}:${minVal.toString().padStart(2,'0')}`
   }
 
   public plus(minutes: number): Clock {
-    const newMinute = this.minute + minutes;
-    const newHour = this.hour + Math.floor(newMinute/60);
-    return new Clock(newHour%24, newMinute%60);
+    const { hourVal, minVal } = this.convert(this.hour, this.minute + minutes);
+    return new Clock(hourVal, minVal);
   }
 
   public minus(minutes: number): Clock {
-    const newMinute = this.minute - minutes;
-    const newHour = this.hour - Math.floor(newMinute/60);
-    return new Clock((newHour + 24)%24, (newMinute + 60)%60);
+    const { hourVal, minVal } = this.convert(this.hour, this.minute - minutes);
+    return new Clock(hourVal, minVal);
   }
 
   public equals(other: Clock): boolean {
-    if (other instanceof Clock) {
-      return this.hour === other.hour && this.minute === other.minute;
-    }
-    return false;
+    const val = this.convert(other.hour, other.minute);
+    const val2 = this.convert(this.hour, this.minute);
+    
+    return val.hourVal === val2.hourVal && val.minVal === val2.minVal;
   }
 }
