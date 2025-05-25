@@ -13,15 +13,22 @@ export class Clock {
     return `${hoursVal.toString().padStart(2,'0')}:${minsVal.toString().padStart(2,'0')}`
   }
 
-  public plus(minutes: unknown): Clock {
-
+  public plus(minutes: number): Clock {
+    const newMinute = this.minute + minutes;
+    const newHour = this.hour + Math.floor(newMinute/60);
+    return new Clock(newHour%24, newMinute%60);
   }
 
-  public minus(minutes: unknown): Clock {
-    
+  public minus(minutes: number): Clock {
+    const newMinute = this.minute - minutes;
+    const newHour = this.hour - Math.floor(newMinute/60);
+    return new Clock((newHour + 24)%24, (newMinute + 60)%60);
   }
 
-  public equals(other: unknown): unknown {
-
+  public equals(other: Clock): boolean {
+    if (other instanceof Clock) {
+      return this.hour === other.hour && this.minute === other.minute;
+    }
+    return false;
   }
 }
