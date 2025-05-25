@@ -19,3 +19,27 @@ export function commands(val: number): string[] {
     }
     return ans;
 }
+
+// V.20 - Bitwise Operators
+// & is a bitwise AND operator
+// (1 << i) shifts the number 1 to the left by i bits
+// 1 << 0 = 00001
+// 1 << 1 = 00010
+// 1 << 2 = 00100
+// 1 << 3 = 01000
+// 1 << 4 = 10000
+// export function commands(val: number): string[] {
+//   const arr = ["wink", "double blink", "close your eyes", "jump"];
+//   const result: string[] = [];
+
+//   for (let i=0; i < arr.length; i++) {
+//     if (val & (1 << i)) {
+//       result.push(arr[i]);
+//     }
+//   }
+//   if (val & 16) {
+//     result.reverse();
+//   }
+  
+//   return result;
+// }
