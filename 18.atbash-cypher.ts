@@ -28,3 +28,32 @@ export function decode(cipherText: string): string {
 
   return ans;
 }
+
+// v2.0 Better OOPS ig!!!
+export function encodev2(plainText: string): string {
+  let ans = mapv2(plainText);
+  let parts = ans.match(/.{1,5}/g);
+  let result = parts ? parts.join(' ') : '';
+
+  return result;
+}
+
+function mapv2(val: string): string {
+  const rawtext: string[] = val.toLowerCase().split('').filter(c => /[a-z0-9]/.test(c));
+  let ans: string = '';
+  const alpha: string = 'abcdefghijklmnopqrstuvwxyz';
+
+  for (const i of rawtext) {
+    const index = alpha.indexOf(i);
+    const rev = alpha[alpha.length-index-1] ?? i;
+    ans += rev;
+  }
+
+  return ans;
+}
+
+export function decodev2(cipherText: string): string {
+  const ans = mapv2(cipherText);
+
+  return ans;
+}
