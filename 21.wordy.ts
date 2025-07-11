@@ -59,7 +59,6 @@ export const answer = (prompt: string) => {
                     throw new Error("Syntax error")
                 }
             }
-            console.log(i,valid[i],"answer",answer);
         }
         return answer;
     }
