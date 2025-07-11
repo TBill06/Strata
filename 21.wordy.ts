@@ -66,3 +66,54 @@ export const answer = (prompt: string) => {
         throw new Error("Syntax error");
     }
 }
+
+// v2.0 cleaner and uses ops map for operations
+// export const answer = (prompt: string): number => {
+//   if (!prompt.startsWith("What is")) {
+//     throw new Error("Unknown operation");
+//   }
+
+//   if (!prompt.endsWith("?")) {
+//     throw new Error("Syntax error");
+//   }
+
+//   const match = prompt.match(/-?\d+|plus|minus|multiplied by|divided by/g);
+
+//   if (!match || match.length === 0) {
+//     throw new Error("Syntax error");
+//   }
+
+//   // Detect unsupported words (i.e., anything not matched by regex)
+//   const unsupported = prompt
+//     .replace(/^What is/, "")
+//     .replace(/\?$/, "")
+//     .trim()
+//     .replace(/-?\d+|plus|minus|multiplied by|divided by/g, "")
+//     .trim();
+
+//   if (unsupported.length > 0) {
+//     throw new Error("Unknown operation");
+//   }
+
+//   const ops: { [key: string]: (a: number, b: number) => number } = {
+//     "plus": (a, b) => a + b,
+//     "minus": (a, b) => a - b,
+//     "multiplied by": (a, b) => a * b,
+//     "divided by": (a, b) => a / b
+//   };
+
+//   let current = Number(match[0]);
+
+//   for (let i = 1; i < match.length; i += 2) {
+//     const op = match[i];
+//     const next = Number(match[i + 1]);
+
+//     if (!ops[op] || isNaN(next)) {
+//       throw new Error("Syntax error");
+//     }
+
+//     current = ops[op](current, next);
+//   }
+
+//   return current;
+// };
