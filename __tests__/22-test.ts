@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { Gigasecond } from '../22.gigasecond.ts'
+import { Gigasecond } from '../22.gigasecond'
 describe('Gigasecond', () => {
   it('date only specification of time', () => {
     const gs = new Gigasecond(new Date(Date.parse('2011-04-25')))

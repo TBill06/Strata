@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { answer } from '../21.wordy.ts'
+import { answer } from '../21.wordy'
 describe('Wordy', () => {
   it('just a number', () => {
     expect(answer('What is 5?')).toEqual(5)
