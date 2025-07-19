@@ -32,3 +32,47 @@ export class Triangle {
     return false;
   }
 }
+
+// v2.0 No biggie
+export class TriangleV2 {
+  sides: number[];
+
+  constructor(...sides: number[]) {
+    this.sides = sides;
+  }
+
+  private isTriangle(): boolean {
+    const [a, b, c] = this.sides;
+    return (
+      a > 0 &&
+      b > 0 &&
+      c > 0 &&
+      a + b >= c &&
+      b + c >= a &&
+      a + c >= b
+    );
+  }
+
+  get isEquilateral(): boolean {
+    if (!this.isTriangle()) return false;
+    return this.sides[0] === this.sides[1] && this.sides[1] === this.sides[2];
+  }
+
+  get isIsosceles(): boolean {
+    if (!this.isTriangle()) return false;
+    return (
+      this.sides[0] === this.sides[1] ||
+      this.sides[0] === this.sides[2] ||
+      this.sides[1] === this.sides[2]
+    );
+  }
+
+  get isScalene(): boolean {
+    if (!this.isTriangle()) return false;
+    return (
+      this.sides[0] !== this.sides[1] &&
+      this.sides[0] !== this.sides[2] &&
+      this.sides[1] !== this.sides[2]
+    );
+  }
+}
