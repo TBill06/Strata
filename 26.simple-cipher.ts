@@ -45,3 +45,23 @@ export class SimpleCipher {
     return newKey;
   }
 }
+
+// v2.0 Better Implementation
+// Better Encode and Decode methods
+export function encode(line: string) {
+  let newKey = '';
+  for (let i = 0; i < line.length; i++) {
+    const shift = (line.charCodeAt(i) - 97 + this.key.charCodeAt(i % this.key.length) - 97) % 26
+    newKey += String.fromCharCode(shift + 97)
+  }
+  return newKey;
+}
+
+export function decode(line: string): string {
+  let newKey = '';
+  for (let i = 0; i < line.length; i++) {
+    const diff = (line.charCodeAt(i) - 97 - (this.key.charCodeAt(i % this.key.length) - 97) + 26) % 26;
+    newKey += String.fromCharCode(diff + 97);
+  }
+  return newKey;
+}
